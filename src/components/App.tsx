@@ -9,7 +9,7 @@ import { truncateText } from '../utils/bookmarkUtils';
 import { theme } from '../styles/theme';
 import {
   Container,
-  MasonryContainer,
+  // MasonryContainer,
   LoadingMessage,
   ErrorMessage,
   FolderPanel,
@@ -17,6 +17,7 @@ import {
   BookmarkItem,
   BookmarkTitle
 } from '../styles/styledComponents';
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
 /**
  MasonryContainer is not good choice, find alternative, 
@@ -40,13 +41,13 @@ export const App = () => {
     [visibleFolderIds, bookmarks]
   );
 
-  const breakpointColumnsObj = {
-    default: theme.masonryColumns.default,    
-    [parseInt(theme.breakpoints.xl)]: theme.masonryColumns.xl,       
-    [parseInt(theme.breakpoints.lg)]: theme.masonryColumns.lg,       
-    [parseInt(theme.breakpoints.md)]: theme.masonryColumns.md,       
-    [parseInt(theme.breakpoints.sm)]: theme.masonryColumns.sm         
-  };
+  // const breakpointColumnsObj = {
+  //   default: theme.masonryColumns.default,    
+  //   [parseInt(theme.breakpoints.xl)]: theme.masonryColumns.xl,       
+  //   [parseInt(theme.breakpoints.lg)]: theme.masonryColumns.lg,       
+  //   [parseInt(theme.breakpoints.md)]: theme.masonryColumns.md,       
+  //   [parseInt(theme.breakpoints.sm)]: theme.masonryColumns.sm         
+  // };
 
   if (isLoading) {
     return <LoadingMessage>Loading bookmarks...</LoadingMessage>;
@@ -58,11 +59,10 @@ export const App = () => {
 
   return (
     <Container>
-      <MasonryContainer
-        breakpointCols={breakpointColumnsObj}
-        className="masonry-grid"
-        columnClassName="masonry-grid_column"
+      <ResponsiveMasonry
+          columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
       >
+        <Masonry>
         {visibleFolders.map(({ folderId, bookmark }) => (
           <FolderPanel key={folderId}>
             <NavigationHeader 
@@ -93,7 +93,8 @@ export const App = () => {
             </BookmarkGrid>
           </FolderPanel>
         ))}
-      </MasonryContainer>
+        </Masonry>
+      </ResponsiveMasonry>
     </Container>
   );
 };
