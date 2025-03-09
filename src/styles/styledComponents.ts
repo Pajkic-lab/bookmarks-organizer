@@ -1,29 +1,11 @@
 import styled from 'styled-components';
-import Masonry from 'react-masonry-css';
 import { theme } from './theme';
 
-export const MasonryContainer = styled(Masonry)`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  
-  .masonry-grid_column {
-    background-clip: padding-box;
-  }
-
-  .masonry-grid {
-    display: flex;
-    width: 100%;
-  }
-`;
 
 export const Container = styled.div`
   padding: ${theme.spacing.md};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  width: 98%;
+  `;
 
 export const LoadingMessage = styled.div`
   color: ${theme.colors.text};

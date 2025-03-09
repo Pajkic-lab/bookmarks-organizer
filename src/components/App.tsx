@@ -19,10 +19,6 @@ import {
 } from '../styles/styledComponents';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
-/**
- MasonryContainer is not good choice, find alternative, 
- its massing with css and its not responsive, it requires hardcoded number of columns
- */
 export const App = () => {
   const {
     bookmarks,
@@ -41,14 +37,6 @@ export const App = () => {
     [visibleFolderIds, bookmarks]
   );
 
-  // const breakpointColumnsObj = {
-  //   default: theme.masonryColumns.default,    
-  //   [parseInt(theme.breakpoints.xl)]: theme.masonryColumns.xl,       
-  //   [parseInt(theme.breakpoints.lg)]: theme.masonryColumns.lg,       
-  //   [parseInt(theme.breakpoints.md)]: theme.masonryColumns.md,       
-  //   [parseInt(theme.breakpoints.sm)]: theme.masonryColumns.sm         
-  // };
-
   if (isLoading) {
     return <LoadingMessage>Loading bookmarks...</LoadingMessage>;
   }
@@ -60,7 +48,7 @@ export const App = () => {
   return (
     <Container>
       <ResponsiveMasonry
-          columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+          columnsCountBreakPoints={{750: 1, 900: 2, 1200: 3, 1400: 3, 1600: 4, 1800: 5, 2000: 4, 2200: 5, 2400: 6, 2600: 7, 2800: 8, 3000: 9}}
       >
         <Masonry>
         {visibleFolders.map(({ folderId, bookmark }) => (
@@ -95,6 +83,6 @@ export const App = () => {
         ))}
         </Masonry>
       </ResponsiveMasonry>
-    </Container>
+     </Container>
   );
 };
